@@ -1,0 +1,37 @@
+#后端的监听端口
+server:
+  port: 9000
+
+#然后就是关于驼峰命名的;
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    #之后就会自动的将数据库的东西，也就是你查询出来自动变成驼峰来收集就是了
+    #以后 MyBatis 查询数据库、把结果封装成 User 时，就会自动对应：
+    #account_name → accountName
+    #create_time  → createTime
+    #is_Saler     → isSaler
+    #like this
+    #-----------------
+    #另外就是还要知道xml文件位置的，不然不知道xml执行在哪里了;
+    #XML 文件位置、`namespace`、`id="get"` 都对应上了，yml 中还缺 XML 加载路径。
+  mapper-locations: classpath:mapper/*.xml
+
+#关于数据库的链接，因为是linux机子的数据库:
+spring:
+  datasource:
+    #另外这里需要mysql连接的依赖在pom
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://192.168.234.135:3306/Shopping_List"
+    #这里是虚拟机的那个MySQL用户就是了
+    #因为MySQL那里直接拒绝了，所以这里在navicat那里创建一个神权用户即可:
+    username: "shopping_admin"
+    password: "19575973Agg!"
+  #配置redis
+  data:
+    redis:
+      host: 192.168.234.135
+      port: 6379
+      username: default
+      password: "19575973agg"
+      database: 1 #这里选择一即可，0用于测试
