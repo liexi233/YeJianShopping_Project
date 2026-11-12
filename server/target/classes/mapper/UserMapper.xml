@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yejian.mapper.UserMapper">
+
+    <insert id="insert" parameterType="Entity.User">
+        insert into user (user_account,password,create_time,is_Saler,phone)
+        values
+        (#{userAccount},#{password},#{createTime},#{isSaler},#{phone})
+    </insert>
+
+    <select id="get" resultType="Entity.User">
+        select * from user
+        <where>
+            <if test="id!=null">
+                and id =#{id}
+            </if>
+            <!--这里test是当前数据，不是数据库的-->
+            <if test="userAccount!=null">
+                and user_account=#{userAccount}
+            </if>
+            <if test="password!=null">
+                and password=#{password}
+            </if>
+            <if test="createTime!=null">
+                and create_time=#{createTime}
+            </if>
+            <if test="isSaler!=null">
+                and is_Saler=#{isSaler}
+            </if>
+        </where>
+    </select>
+</mapper>
