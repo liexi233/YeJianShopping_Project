@@ -1,5 +1,6 @@
 package com.yejian.service.UserServiceImpl;
 
+import Constant.UserConstant;
 import DTO.RegisterDTO;
 import Entity.User;
 import code.Code;
@@ -31,14 +32,15 @@ public class RegisterServiceImpl implements RegisterService {
 
 
     @Override
-    public Result getCode(String phone) {
+    public Result getCode(String phone,String userAccount) {
         //生成6位验证码:
         //不对，这里也是要手机验证码的就是了
         String vCode = Code.getCode();
         //生成验证码成功
         log.info("验证码生成成功");
         //依旧存活时间;
-        stringRedisTemplate.opsForValue().set("register:code:"+phone,vCode,2, TimeUnit.MINUTES);
+        //这里好像也要改吧:registerCode:userAccount:phone:"val_Vcode";这里就是了;
+        stringRedisTemplate.opsForValue().set(UserConstant.RegisterVCodePrefix+userAccount+":"+phone,vCode,2, TimeUnit.MINUTES);
         //不需要
         return Result.success();
     }

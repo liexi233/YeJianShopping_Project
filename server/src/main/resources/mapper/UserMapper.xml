@@ -21,9 +21,6 @@
             <if test="userAccount!=null">
                 and user_account=#{userAccount}
             </if>
-            <if test="password!=null">
-                and password=#{password}
-            </if>
             <if test="createTime!=null">
                 and create_time=#{createTime}
             </if>

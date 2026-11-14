@@ -1,5 +1,6 @@
 package com.yejian.controller;
 
+import Constant.UserConstant;
 import DTO.RegisterCodeDTO;
 import DTO.RegisterDTO;
 import Entity.User;
@@ -27,13 +28,13 @@ public class RegisterController {
 
 
     // 变成路径的一部分
-    @GetMapping("/code/{phone}")
-    public Result SendCode(@PathVariable("phone") String phone) {
+    @GetMapping("/code/{phone}/{userAccount}")
+    public Result SendCode(@PathVariable("phone") String phone,@PathVariable("userAccount") String userAccount) {
         //返回一个Result的空成功结果即可:
         //所以这里的话:
         //进入业务逻辑层处理
         //因为redis那里需要phone打标记的;
-        return registerService.getCode(phone);
+        return registerService.getCode(phone,userAccount);
     }
 
 
@@ -41,7 +42,8 @@ public class RegisterController {
     public Result Register(@RequestBody RegisterDTO registerDTO) {
         //这里的话;
         //先看验证码是否正确;
-        if(!(registerDTO.getCode().equals(stringRedisTemplate.opsForValue().get("register:code:"+registerDTO.getPhone())))){
+        //prefix+userAccount+Phone
+        if(!(registerDTO.getCode().equals(stringRedisTemplate.opsForValue().get(UserConstant.RegisterVCodePrefix+registerDTO.getUserAccount()+":"+registerDTO.getPhone())))){
             //如果不正确
             log.error("用户的验证码不正确");
             return Result.error("用户验证码不正确");
@@ -63,7 +65,6 @@ public class RegisterController {
         //如果没有的话，这里就开始创建了就是了，手机号到无所谓;
         //insert
         registerService.register(registerDTO);
-
         return Result.success();
     }
 

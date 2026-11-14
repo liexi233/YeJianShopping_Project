@@ -35,3 +35,12 @@ spring:
       username: default
       password: "19575973agg"
       database: 1 #这里选择一即可，0用于测试
+
+yejianshop:
+  jwt:
+    #秘钥的长度是64位，所以这里必须满足要求才可
+    user-secret-key:  3965fe1498ab4ea09bf4751d0387945a725cc76b50dd767ef7aca31166807b6a #这里随便取即可
+    #这是那个前端请求的那个名字就是了;
+    user-token-name: authentication #读的是这个token就是了;
+    #     String token = request.getHeader(jwtProperties.getUserTokenName());
+    user-ttl: 7200000
