@@ -52,8 +52,6 @@ public class RegisterServiceImpl implements RegisterService {
         User user = new User();
         BeanUtils.copyProperties(registerDTO,user);
         user.setCreateTime(LocalDateTime.now());
-        //还有开店状态就是了
-        user.setIsSaler(0);
         userMapper.insert(user);
 
     }

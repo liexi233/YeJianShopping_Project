@@ -10,6 +10,6 @@ public class User {
     String userAccount;
     String password;
     LocalDateTime createTime;
-    Integer isSaler; //建议搞成包装类即可，这里也是:
+//    Integer isSaler; //建议搞成包装类即可，这里也是:
     String phone;
 }
