@@ -36,11 +36,7 @@ public class UserController {
     public Result Login(@RequestBody UserLoginDTO userLoginDTO){
         //然后就是一步步来拆解就是，先测试一下
         //第一步还是查询数据库就是了，看有没有这个
-
-
         //那么这里就需要的就是VO类，因为VO类这里需要我们的token才可
-
-
         return userService.login(userLoginDTO);
     }
     @PostMapping("/check")

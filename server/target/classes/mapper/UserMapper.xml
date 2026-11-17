@@ -6,9 +6,9 @@
 <mapper namespace="com.yejian.mapper.UserMapper">
 
     <insert id="insert" parameterType="Entity.User">
-        insert into user (user_account,password,create_time,is_Saler,phone)
+        insert into user (user_account,password,create_time,phone)
         values
-        (#{userAccount},#{password},#{createTime},#{isSaler},#{phone})
+        (#{userAccount},#{password},#{createTime},#{phone})
     </insert>
 
     <select id="get" resultType="Entity.User">
@@ -23,9 +23,6 @@
             </if>
             <if test="createTime!=null">
                 and create_time=#{createTime}
-            </if>
-            <if test="isSaler!=null">
-                and is_Saler=#{isSaler}
             </if>
         </where>
     </select>

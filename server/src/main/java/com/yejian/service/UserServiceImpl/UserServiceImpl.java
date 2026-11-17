@@ -77,6 +77,7 @@ public class UserServiceImpl implements UserService {
         String token=JwtUtil.createJWT(jwtProperties.userSecretKey, jwtProperties.getUserTtl(), claims);
         log.info("用户JWT令牌:"+token);
 
+        //不过我感觉这里也是可以用redis存入数据的
 
         //存了ThreadLocal有什么用，另外就是
         log.info("登录成功");

@@ -1,5 +1,6 @@
 package com.yejian.config;
 
+import com.yejian.interceptor.JwtManagerTokenInterceptor;
 import com.yejian.interceptor.JwtTokenInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ addInterceptors(...)：就是 Spring MVC 初始化时会调用的配置方法，
     @Autowired
     private JwtTokenInterceptor jwtTokenInterceptor;
 
+    @Autowired
+    private JwtManagerTokenInterceptor  jwtManagerTokenInterceptor;
+
     //自定义拦截器;
     //添加:
     //registry：参数的名字，代表传进来的那个注册表对象。
@@ -53,8 +57,11 @@ addInterceptors(...)：就是 Spring MVC 初始化时会调用的配置方法，
                         "user/forgetpwdSubmit/"
                 );
         //好烦;
-
-
-
+        registry.addInterceptor(jwtManagerTokenInterceptor)
+                .addPathPatterns("/manager/**")
+                .excludePathPatterns(
+                        "/manager/login"
+                );
+        //放行登录接口即可;
     }
 }

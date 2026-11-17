@@ -44,3 +44,7 @@ yejianshop:
     user-token-name: authentication #读的是这个token就是了;
     #     String token = request.getHeader(jwtProperties.getUserTokenName());
     user-ttl: 7200000
+    #
+    manager-secret-key: hEN-gs_ZhwULSnk2emLMMwItjePjiknQQ_XzBxttx_TgmGnjgDLkF_YAGpi5rnzk
+    manager-token-name: authentication
+    manager-ttl: 7200000

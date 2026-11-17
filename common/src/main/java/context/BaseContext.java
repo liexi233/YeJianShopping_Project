@@ -18,7 +18,4 @@ public class BaseContext {
         //移除这个线程用户的id,线程复用用的是线程池技术;
     }
 
-
-
-
 }
