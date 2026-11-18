@@ -22,7 +22,7 @@ spring:
   datasource:
     #另外这里需要mysql连接的依赖在pom
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://192.168.234.135:3306/Shopping_List"
+    url: "jdbc:mysql://192.168.234.136:3306/Shopping_List"
     #这里是虚拟机的那个MySQL用户就是了
     #因为MySQL那里直接拒绝了，所以这里在navicat那里创建一个神权用户即可:
     username: "shopping_admin"
@@ -30,7 +30,7 @@ spring:
   #配置redis
   data:
     redis:
-      host: 192.168.234.135
+      host: 192.168.234.136
       port: 6379
       username: default
       password: "19575973agg"
